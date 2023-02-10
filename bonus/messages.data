@@ -1,0 +1,58 @@
+# <id> = <message-format>
+
+# >> FONTS >> BEGIN
+FONT_ERR_LOAD_FILE = Cannot load font "%s" (no such file or directory).
+FONT_ERR_ID_CONFLICT = Cannot load font "%s" with id "%s" (id already exists).
+# >> FONTS >> END
+
+# >> RECTS >> BEGIN
+RECT_ERR_ADD_ID = Cannot create [%s] with id "%s" (id already exists).
+RECT_ERR_DEL_ID = Cannot delete [%s] with id "%s" (unknown id).
+RECT_ERR_SET_ID = Cannot set property "%s" for [%s] (unknown id).
+RECT_ERR_SET_TARGET = Cannot set property "%s" for [%s] (unknown target id).
+RECT_ERR_GET_ID = Cannot get property "%s" for [%s] (unknown id).
+RECT_ERR_TARGET = Cannot set target with id "%s" for [%s] (unknown id).
+# >> RECTS >> END
+
+# >> TEXTS >> BEGIN
+TEXT_ERR_ADD_ID = Cannot create [%s] with id "%s" (id already exists).
+TEXT_ERR_DEL_ID = Cannot delete [%s] with id "%s (unknown id).
+TEXT_ERR_SET_ID = Cannot set property "%s" for [%s] (unknown id).
+TEXT_ERR_GET_ID = Cannot get property "%s" for [%s] (unknown id).
+TEXT_ERR_SET_TARGET = Cannot set property "%s" for [%s] (unknown id).
+TEXT_ERR_TARGET = Cannot set target with id "%s" for [%s] (unknown target id).
+# >> TEXTS >> END
+
+# >> CIRCLES >> BEGIN
+CIRCLE_ERR_ADD_ID = Cannot create [%s] with id "%s" (id already exists).
+CIRCLE_ERR_DEL_ID = Cannot delete [%s] with id "%s" (unknown id).
+CIRCLE_ERR_SET_ID = Cannot set property "%s" for [%s] (unknown id).
+CIRCLE_ERR_SET_TARGET = Cannot set property "%s" for [%s] (unknown target id).
+CIRCLE_ERR_GET_ID = Cannot get property "%s" for [%s] (unknown id).
+CIRCLE_ERR_TARGET = Cannot set target with id "%s" for [%s] (unknown id).
+# >> CIRCLES >> END
+
+# >> VERTEXES >> BEGIN
+VERTEX_ERR_ADD_ID = Cannot create [%s] with id "%s" (id already exists).
+VERTEX_ERR_DEL_ID = Cannot delete [%s] with id "%s" (unknown id).
+VERTEX_ERR_SET_ID = Cannot set property "%s" for [%s] (unknown id).
+VERTEX_ERR_SET_TARGET = Cannot set property "%s" for [%s] (unknown target id).
+VERTEX_ERR_SET_COUNT = Cannot set property "%s" for [[%s] <= vertex number %d] (index out of bounds).
+VERTEX_ERR_GET_ID = Cannot get property "%s" for [%s] (unknown id).
+VERTEX_ERR_GET_COUNT = Cannot get property "%s" for [[%s] <= vertex number %d] (index out of bounds).
+VERTEX_ERR_TARGET = Cannot set target with id "%s" for [%s] (unknown id).
+# >> VERTEXES >> END
+
+# >> RENDER TEXTURES >> BEGIN
+RTEX_ERR_ADD_ID = Cannot create [%s] with id "%s" (id already exists).
+RTEX_ERR_DEL_ID = Cannot delete [%s] with id "%s" (unknown id).
+RTEX_ERR_SET_ID = Cannot set property "%s" for [%s] (unknwon id).
+RTEX_ERR_GET_ID = Cannot get property "%s" for [%s] (unknown id).
+# >> RENDER TEXTURES >> END
+
+# >> FRAG SHADERS >> BEGIN
+FSHADER_ERR_ADD_ID = Cannot create [%s] with id "%s" (id already exists).
+FSHADER_ERR_ADD_FILE = Cannot create [%s] with file path "%s" (no such file or directory).
+FSHADER_ERR_DEL_ID = Cannot delete [%s] with id "%s" (unknown id).
+FSHADER_ERR_SET_ID = Cannot change value of parameter "%s" for [%s] (unknown id).
+# >> FRAG SHADERS >> END
