@@ -32,6 +32,17 @@ BUTTON_ERR_SET_TARGET = Cannot set property "%s" for [%s] (unknown id).
 BUTTON_ERR_TARGET = Cannot set target with id "%s" for [%s] (unknown target id).
 # >> BUTTONS >> END
 
+# >> OBJECTS >> BEGIN
+OBJECT_ERR_ADD_ID = Cannot create [%s] with id "%s" (id already exists).
+OBJECT_ERR_DEL_ID = Cannot delete [%s] with id "%s (unknown id).
+OBJECT_ERR_SET_ID = Cannot set property "%s" for [%s] (unknown id).
+OBJECT_ERR_GET_ID = Cannot get property "%s" for [%s] (unknown id).
+OBJECT_ERR_SET_TARGET = Cannot set property "%s" for [%s] (unknown id).
+OBJECT_ERR_TARGET = Cannot set target with id "%s" for [%s] (unknown target id).
+OBJECT_WARN_NO_SUPPORT = Using unsupported reference type for object with id "%s".
+OBJECT_ERR_DISABLE_ID = Cannot disable property "%s" for [%s] (unknown id).
+# >> OBJECTS >> END
+
 # >> CIRCLES >> BEGIN
 CIRCLE_ERR_ADD_ID = Cannot create [%s] with id "%s" (id already exists).
 CIRCLE_ERR_DEL_ID = Cannot delete [%s] with id "%s" (unknown id).

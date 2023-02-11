@@ -7,6 +7,11 @@
 
 #include "include/main.h"
 
+void ex_fn(app_data *adata)
+{
+    my_printf("Clicked button !\n");
+}
+
 void load_defaults(app_data *adata)
 {
     add_rtex(adata, "rtex_game", 1);
@@ -83,4 +88,10 @@ void load_defaults(app_data *adata)
     color_button_fg(adata, "btn", sfWhite);
     color_button_out(adata, "btn", get_color(150, 150, 150, 255));
     resize_button_out(adata, "btn", 1);
+
+    add_object(adata, "btn_o", get_button(adata, "btn"), TYPE_BUTTON);
+    set_object_bg(adata, "btn_o", get_color(20, 20, 20, 255));
+    set_object_out(adata, "btn_o", get_color(255, 120, 0, 255));
+    set_object_fg(adata, "btn_o", get_color(255, 120, 0, 255));
+    set_object_click(adata, "btn_o", &ex_fn);
 }

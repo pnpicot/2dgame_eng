@@ -22,7 +22,9 @@ void register_leftclick_release(app_data *adata, sfVector2f mouse)
     s_log *log = adata->config->log;
 
     if (log->log_left_rel)
-        my_printf("(" YEL "EVENT" RESET ") " CYN "left mouse click" RESET " [ " BLU "%6f / %6f" RESET " ]\n", mouse.x, mouse.y);
+        my_printf("(" YEL "EVENT" RESET ") " CYN "left mouse click" RESET " [ " BLU "%6f" RESET " / " BLU "%6f" RESET " ]\n", mouse.x, mouse.y);
+
+    click_objects(adata);
 }
 
 void register_event(app_data *adata, sfEvent event)

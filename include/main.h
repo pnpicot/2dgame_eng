@@ -22,6 +22,11 @@
 #define TYPE_VERTEX 4
 #define TYPE_BUTTON 5
 
+#define obj_bg_hover 0x01
+#define obj_fg_hover 0x02
+#define obj_click 0x04
+#define obj_out_hover 0x08
+
 #include <math.h>
 #include "my.h"
 
@@ -124,6 +129,7 @@ typedef struct {
     linked_node *texts;
     linked_node *vertexes;
     linked_node *buttons;
+    linked_node *objects;
 } s_list;
 
 typedef struct {
@@ -138,6 +144,21 @@ typedef struct {
     int min_rtex_depth;
     int max_rtex_depth;
 } app_data;
+
+typedef struct {
+    void *ref;
+    sfUint8 type;
+    int properties;
+    char *id;
+    sfColor bg_off;
+    sfColor bg_on;
+    sfColor fg_off;
+    sfColor fg_on;
+    sfColor out_off;
+    sfColor out_on;
+    void (*trigger)(app_data *adata);
+    sfVector2f padding;
+} s_object;
 
 #include "window.h"
 #include "init.h"
@@ -155,3 +176,4 @@ typedef struct {
 #include "font.h"
 #include "text.h"
 #include "button.h"
+#include "object.h"

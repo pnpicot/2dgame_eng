@@ -12,6 +12,7 @@ SRC	=	$(shell find m_rect -name '*.c')	\
 		$(shell find m_button -name '*.c')	\
 		$(shell find m_fshader -name '*.c')	\
 		$(shell find m_rtex -name '*.c')	\
+		$(shell find m_object -name '*.c')	\
 		$(wildcard *.c)
 
 OBJ	=	$(SRC:.c=.o)

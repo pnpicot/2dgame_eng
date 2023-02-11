@@ -25,6 +25,7 @@ void init_lists(s_list *lists)
     lists->vertexes = linked_new();
     lists->texts = linked_new();
     lists->buttons = linked_new();
+    lists->objects = linked_new();
 }
 
 void init_appdata(app_data *adata)

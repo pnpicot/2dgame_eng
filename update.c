@@ -15,7 +15,7 @@ void update(app_data *adata)
     float seconds = elapsed.microseconds / 1000000.0f;
 
     if (seconds >= config->update_rate) {
-        // ...
+        update_objects(adata);
 
         sfClock_restart(clocks->update_clock);
     }
