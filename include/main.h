@@ -22,12 +22,19 @@
 #define TYPE_VERTEX 4
 #define TYPE_BUTTON 5
 
+#define TRF_TRANSLATE 1
+#define TRF_ROTATE 2
+#define TRF_SCALE 3
+
 #define obj_bg_hover 0x01
 #define obj_fg_hover 0x02
 #define obj_click 0x04
 #define obj_out_hover 0x08
 
+#define TRANSFORM_TOLERANCE 1.0f
+
 #include <math.h>
+#include <time.h>
 #include "my.h"
 
 typedef struct {
@@ -130,6 +137,7 @@ typedef struct {
     linked_node *vertexes;
     linked_node *buttons;
     linked_node *objects;
+    linked_node *transforms;
 } s_list;
 
 typedef struct {
@@ -160,6 +168,24 @@ typedef struct {
     sfVector2f padding;
 } s_object;
 
+typedef struct s_transform_s {
+    void *ref;
+    char *id;
+    sfUint8 ref_type;
+    sfUint8 trf_type;
+    sfVector2f dest;
+    float speed;
+    void (*callback)(app_data *adata, struct s_transform_s old);
+} s_transform;
+
+typedef struct {
+    void *ref;
+    sfUint8 type;
+    sfVector2f dest;
+    float speed;
+    void (*callback)(app_data *adata, struct s_transform_s old);
+} s_trfarg;
+
 #include "window.h"
 #include "init.h"
 #include "update.h"
@@ -177,3 +203,4 @@ typedef struct {
 #include "text.h"
 #include "button.h"
 #include "object.h"
+#include "transform.h"

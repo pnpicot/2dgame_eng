@@ -76,3 +76,8 @@ FSHADER_ERR_ADD_FILE = Cannot create [%s] with file path "%s" (no such file or d
 FSHADER_ERR_DEL_ID = Cannot delete [%s] with id "%s" (unknown id).
 FSHADER_ERR_SET_ID = Cannot change value of parameter "%s" for [%s] (unknown id).
 # >> FRAG SHADERS >> END
+
+# >> TRANSFORMS >> BEGIN
+TRANSFORM_ERR_DEL_ID = Cannot cancel transformation with id "%s" (unknown id).
+TRANSFORM_ERR_ADD_ID = Cannot make transformation with id "%s" (id already exists).
+# >> TRANSFORMS >> END

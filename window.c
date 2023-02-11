@@ -33,6 +33,7 @@ void window_loop(app_data *adata)
 
 void run_window(app_data *adata)
 {
+    srand(time(NULL));
     load_defaults(adata);
 
     while (sfRenderWindow_isOpen(adata->win)) {

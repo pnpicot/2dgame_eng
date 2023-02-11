@@ -12,6 +12,18 @@ void ex_fn(app_data *adata)
     my_printf("Clicked button !\n");
 }
 
+void tr_fn(app_data *adata, s_transform old)
+{
+    s_trfarg trsa;
+    trsa.callback = &tr_fn;
+    trsa.dest = (sfVector2f) { rand() % adata->win_w, rand() % adata->win_h };
+    trsa.ref = get_button(adata, "btn");
+    trsa.type = TYPE_BUTTON;
+    trsa.speed = 1.0f;
+
+    translate(adata, trsa);
+}
+
 void load_defaults(app_data *adata)
 {
     add_rtex(adata, "rtex_game", 1);
@@ -77,7 +89,7 @@ void load_defaults(app_data *adata)
     color_rect(adata, "color_rect", get_color(150, 90, 224, 70));
     set_rect_target(adata, "color_rect", "color_overlay");
 
-    add_button(adata, "btn", 3);
+    add_button(adata, "btn", 5);
     set_button_target(adata, "btn", "rtex_over");
     move_button(adata, "btn", (sfVector2f) { 789, 121 });
     resize_button(adata, "btn", (sfVector2f) { 350, 60});
@@ -94,4 +106,23 @@ void load_defaults(app_data *adata)
     set_object_out(adata, "btn_o", get_color(255, 120, 0, 255));
     set_object_fg(adata, "btn_o", get_color(255, 120, 0, 255));
     set_object_click(adata, "btn_o", &ex_fn);
+
+    add_object(adata, "ov_rect_o", get_rect(adata, "ov_rect"), TYPE_RECT);
+    set_object_bg(adata, "ov_rect_o", get_color(125, 56, 215, 255));
+
+    add_object(adata, "uv_rect_o", get_rect(adata, "uv_rect"), TYPE_RECT);
+    set_object_bg(adata, "uv_rect_o", get_color(225, 30, 132, 255));
+
+    add_object(adata, "ov_circ_o", get_circle(adata, "ov_circ"), TYPE_CIRCLE);
+    set_object_bg(adata, "ov_circ_o", get_color(120, 120, 255, 150));
+    resize_object(adata, "ov_circ_o", (sfVector2f) { 50, 50 });
+
+    s_trfarg trsa;
+    trsa.callback = &tr_fn;
+    trsa.dest = (sfVector2f) { 50, 50 };
+    trsa.ref = get_button(adata, "btn");
+    trsa.type = TYPE_BUTTON;
+    trsa.speed = 1.0f;
+
+    translate(adata, trsa);
 }

@@ -16,6 +16,7 @@ void update(app_data *adata)
 
     if (seconds >= config->update_rate) {
         update_objects(adata);
+        update_transforms(adata);
 
         sfClock_restart(clocks->update_clock);
     }
