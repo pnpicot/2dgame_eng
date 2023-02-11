@@ -69,6 +69,18 @@ void load_defaults(app_data *adata)
     add_rect(adata, "color_rect", 1);
     move_rect(adata, "color_rect", (sfVector2f) { 0, 0 });
     resize_rect(adata, "color_rect", (sfVector2f) { adata->win_w, adata->win_h });
-    color_rect(adata, "color_rect", get_color(150, 90, 224, 85));
+    color_rect(adata, "color_rect", get_color(150, 90, 224, 70));
     set_rect_target(adata, "color_rect", "color_overlay");
+
+    add_button(adata, "btn", 3);
+    set_button_target(adata, "btn", "rtex_over");
+    move_button(adata, "btn", (sfVector2f) { 789, 121 });
+    resize_button(adata, "btn", (sfVector2f) { 350, 60});
+    edit_button(adata, "btn", "test button");
+    set_button_font(adata, "btn", get_font(adata, "oxy"));
+    resize_button_text(adata, "btn", 24);
+    color_button_bg(adata, "btn", get_color(50, 50, 50, 255));
+    color_button_fg(adata, "btn", sfWhite);
+    color_button_out(adata, "btn", get_color(150, 150, 150, 255));
+    resize_button_out(adata, "btn", 1);
 }

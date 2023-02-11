@@ -7,8 +7,22 @@
 
 #pragma once
 
-#include <math.h>
+#define RED   "\x1B[31m"
+#define GRN   "\x1B[32m"
+#define YEL   "\x1B[33m"
+#define BLU   "\x1B[34m"
+#define MAG   "\x1B[35m"
+#define CYN   "\x1B[36m"
+#define WHT   "\x1B[37m"
+#define RESET "\x1B[0m"
 
+#define TYPE_RECT 1
+#define TYPE_CIRCLE 2
+#define TYPE_TEXT 3
+#define TYPE_VERTEX 4
+#define TYPE_BUTTON 5
+
+#include <math.h>
 #include "my.h"
 
 typedef struct {
@@ -16,6 +30,7 @@ typedef struct {
     char *id;
     char *rtex_id;
     int layer;
+    sfUint8 type;
 } s_rect;
 
 typedef struct {
@@ -23,6 +38,7 @@ typedef struct {
     char *id;
     char *rtex_id;
     int layer;
+    sfUint8 type;
 } s_circle;
 
 typedef struct {
@@ -30,6 +46,7 @@ typedef struct {
     char *id;
     char *rtex_id;
     int layer;
+    sfUint8 type;
 } s_vertex;
 
 typedef struct {
@@ -37,7 +54,24 @@ typedef struct {
     char *id;
     char *rtex_id;
     int layer;
+    sfUint8 type;
 } s_text;
+
+typedef struct {
+    s_text *text;
+    s_rect *rect;
+    char *id;
+    char *rtex_id;
+    int layer;
+    sfUint8 type;
+} s_button;
+
+typedef struct {
+    int log_left_rel;
+    int log_left_press;
+    int log_right_rel;
+    int log_right_press;
+} s_log;
 
 typedef struct {
     float app_rate;
@@ -45,6 +79,7 @@ typedef struct {
     float render_rate;
     int win_w;
     int win_h;
+    s_log *log;
 } s_config;
 
 typedef struct {
@@ -88,6 +123,7 @@ typedef struct {
     linked_node *circles;
     linked_node *texts;
     linked_node *vertexes;
+    linked_node *buttons;
 } s_list;
 
 typedef struct {
@@ -118,3 +154,4 @@ typedef struct {
 #include "vertex.h"
 #include "font.h"
 #include "text.h"
+#include "button.h"

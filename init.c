@@ -24,6 +24,7 @@ void init_lists(s_list *lists)
     lists->circles = linked_new();
     lists->vertexes = linked_new();
     lists->texts = linked_new();
+    lists->buttons = linked_new();
 }
 
 void init_appdata(app_data *adata)
@@ -52,6 +53,22 @@ void apply_config(s_config *config, char *key, char *val)
         config->win_w = my_getnbr(val);
     if (!my_strcmp(key, "DEF_WIN_Y"))
         config->win_h = my_getnbr(val);
+    if (!my_strcmp(key, "LOG_LEFT_REL"))
+        config->log->log_left_rel = my_getnbr(val);
+    if (!my_strcmp(key, "LOG_LEFT_PRESS"))
+        config->log->log_left_press = my_getnbr(val);
+    if (!my_strcmp(key, "LOG_RIGHT_REL"))
+        config->log->log_right_rel = my_getnbr(val);
+    if (!my_strcmp(key, "LOG_RIGHT_PRESS"))
+        config->log->log_right_press = my_getnbr(val);
+}
+
+void init_log(s_log *log)
+{
+    log->log_left_press = 0;
+    log->log_left_rel = 0;
+    log->log_right_press = 0;
+    log->log_right_rel = 0;
 }
 
 void init_config(s_config *config)
@@ -59,6 +76,10 @@ void init_config(s_config *config)
     char *file_content = file_extract("bonus/config.data");
     char **entries = str_split(file_content, '\n');
     int ite = 0;
+
+    config->log = malloc(sizeof(s_log));
+
+    init_log(config->log);
 
     while (entries[ite] != NULL) {
         char **data = str_m_split(entries[ite], 2, '=', ' ');

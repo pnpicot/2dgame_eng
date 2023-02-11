@@ -36,6 +36,7 @@ void add_rect(app_data *adata, char *id, int layer)
     new_rect->id = id;
     new_rect->layer = layer;
     new_rect->rtex_id = NULL;
+    new_rect->type = TYPE_RECT;
 
     if (layer < adata->min_layer) adata->min_layer = layer;
     if (layer > adata->max_layer) adata->max_layer = layer;

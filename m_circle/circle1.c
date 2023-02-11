@@ -37,6 +37,7 @@ void add_circle(app_data *adata, char *id, int layer)
     new_circle->id = id;
     new_circle->rtex_id = NULL;
     new_circle->layer = layer;
+    new_circle->type = TYPE_CIRCLE;
 
     if (layer < adata->min_layer) adata->min_layer = layer;
     if (layer > adata->max_layer) adata->max_layer = layer;

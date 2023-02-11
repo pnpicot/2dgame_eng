@@ -9,6 +9,7 @@ SRC	=	$(shell find m_rect -name '*.c')	\
 		$(shell find m_circle -name '*.c')	\
 		$(shell find m_vertex -name '*.c')	\
 		$(shell find m_text -name '*.c')	\
+		$(shell find m_button -name '*.c')	\
 		$(shell find m_fshader -name '*.c')	\
 		$(shell find m_rtex -name '*.c')	\
 		$(wildcard *.c)

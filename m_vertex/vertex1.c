@@ -37,6 +37,7 @@ void add_vertex(app_data *adata, char *id, int layer)
     new_vertex->id = id;
     new_vertex->rtex_id = NULL;
     new_vertex->layer = layer;
+    new_vertex->type = TYPE_VERTEX;
 
     if (layer < adata->min_layer) adata->min_layer = layer;
     if (layer > adata->max_layer) adata->max_layer = layer;
