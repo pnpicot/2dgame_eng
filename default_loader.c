@@ -17,11 +17,52 @@ void tr_fn(app_data *adata, s_transform old)
     s_trfarg trsa;
     trsa.callback = &tr_fn;
     trsa.dest = (sfVector2f) { rand() % adata->win_w, rand() % adata->win_h };
+    trsa.angle = 0;
+    trsa.scale = (sfVector2f) { 0, 0 };
     trsa.ref = get_button(adata, "btn");
     trsa.type = TYPE_BUTTON;
-    trsa.speed = 1.0f;
+    trsa.t_speed = 1.0f;
+    trsa.r_speed = 0;
+    trsa.s_speed = 0;
 
     translate(adata, trsa);
+}
+
+void sc_fn(app_data *adata, s_transform old)
+{
+    float sc = ((float) rand()) / RAND_MAX;
+    sc += 0.3;
+
+    s_trfarg trsa;
+    trsa.callback = &sc_fn;
+    trsa.dest = (sfVector2f) { 0, 0 };
+    trsa.angle = 0;
+    trsa.scale = (sfVector2f) { sc, sc };
+    trsa.ref = get_button(adata, "btn");
+    trsa.type = TYPE_BUTTON;
+    trsa.s_speed = 0.001f;
+    trsa.r_speed = 0;
+    trsa.t_speed = 0;
+
+    scale(adata, trsa);
+}
+
+void rt_fn(app_data *adata, s_transform old)
+{
+    s_trfarg trsa;
+    trsa.callback = &rt_fn;
+    trsa.dest = (sfVector2f) { 0, 0 };
+    trsa.angle = rand() % 360;
+    trsa.scale = (sfVector2f) { 0, 0 };
+    trsa.ref = get_button(adata, "btn");
+    trsa.type = TYPE_BUTTON;
+    trsa.r_speed = 0.1f;
+    trsa.s_speed = 0;
+    trsa.t_speed = 0;
+
+    my_printf("[ " CYN "%6f" RESET " -> " YEL "%6f" RESET " ]\n", old.angle, trsa.angle);
+
+    rotate(adata, trsa);
 }
 
 void load_defaults(app_data *adata)
@@ -121,10 +162,54 @@ void load_defaults(app_data *adata)
     trsa.dest = (sfVector2f) { 50, 50 };
     trsa.ref = get_button(adata, "btn");
     trsa.type = TYPE_BUTTON;
-    trsa.speed = 1.0f;
+    trsa.t_speed = 1.0f;
+    trsa.s_speed = 0;
+    trsa.r_speed = 0;
     trsa.angle = 0;
+    trsa.scale = (sfVector2f) { 0, 0 };
 
     translate(adata, trsa);
 
     set_button_origin(adata, "btn", (sfVector2f) { 175, 30 });
+
+    s_trfarg scla;
+    scla.callback = &sc_fn;
+    scla.dest = (sfVector2f) { 0, 0 };
+    scla.ref = get_button(adata, "btn");
+    scla.type = TYPE_BUTTON;
+    scla.s_speed = 0.001f;
+    scla.r_speed = 0;
+    scla.t_speed = 0;
+    scla.angle = 0;
+    scla.scale = (sfVector2f) { 0.7, 1.2 };
+
+    scale(adata, scla);
+
+    s_trfarg rota;
+    rota.callback = &rt_fn;
+    rota.dest = (sfVector2f) { 0, 0 };
+    rota.ref = get_button(adata, "btn");
+    rota.type = TYPE_BUTTON;
+    rota.r_speed = 0.1f;
+    rota.s_speed = 0;
+    rota.t_speed = 0;
+    rota.angle = 360;
+    rota.scale = (sfVector2f) { 0, 0 };
+
+    rotate(adata, rota);
+
+    set_rect_origin(adata, "uv_rect", (sfVector2f) { 50, 50 });
+
+    s_trfarg uvr;
+    uvr.callback = NULL;
+    uvr.angle = 90.0f;
+    uvr.dest = (sfVector2f) { 1578, 781 };
+    uvr.ref = get_rect(adata, "uv_rect");
+    uvr.scale = (sfVector2f) { 0.5, 0.5 };
+    uvr.t_speed = 0;
+    uvr.s_speed = 0;
+    uvr.r_speed = 0;
+    uvr.type = TYPE_RECT;
+
+    transform(adata, uvr, 5.0f);
 }

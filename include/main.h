@@ -25,6 +25,7 @@
 #define TRF_TRANSLATE 1
 #define TRF_ROTATE 2
 #define TRF_SCALE 3
+#define TRF_ALL 4
 
 #define obj_bg_hover 0x01
 #define obj_fg_hover 0x02
@@ -174,8 +175,11 @@ typedef struct s_transform_s {
     sfUint8 ref_type;
     sfUint8 trf_type;
     sfVector2f dest;
-    float speed;
+    float t_speed;
+    float s_speed;
+    float r_speed;
     float angle;
+    sfVector2f scale;
     sfUint8 trsl;
     sfUint8 rot;
     sfUint8 scl;
@@ -186,8 +190,11 @@ typedef struct {
     void *ref;
     sfUint8 type;
     sfVector2f dest;
-    float speed;
+    float t_speed;
+    float s_speed;
+    float r_speed;
     float angle;
+    sfVector2f scale;
     void (*callback)(app_data *adata, struct s_transform_s old);
 } s_trfarg;
 
