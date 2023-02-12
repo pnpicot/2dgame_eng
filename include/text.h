@@ -29,3 +29,4 @@ sfVector2f get_text_origin(app_data *adata, char *id);
 sfVector2f get_text_scale(app_data *adata, char *id);
 const sfFont *get_text_font(app_data *adata, char *id);
 const char *get_text_string(app_data *adata, char *id);
+void set_text_active(app_data *adata, char *id, sfUint8 active);

@@ -38,6 +38,7 @@ void add_circle(app_data *adata, char *id, int layer)
     new_circle->rtex_id = NULL;
     new_circle->layer = layer;
     new_circle->type = TYPE_CIRCLE;
+    new_circle->active = 1;
 
     if (layer < adata->min_layer) adata->min_layer = layer;
     if (layer > adata->max_layer) adata->max_layer = layer;
@@ -48,28 +49,22 @@ void add_circle(app_data *adata, char *id, int layer)
 void delete_circle(app_data *adata, char *id)
 {
     s_circle *circle = get_circle(adata, id);
-
     if (circle == NULL) {
         char *format = get_msg(adata, "CIRCLE_ERR_DEL_ID")->format;
         my_printf(format, "CIRCLE", id);
         return;
     }
-
     linked_node *circles = adata->lists->circles;
     int ite = 0;
-
     while (circles != NULL && circles->data != NULL) {
         s_circle *cur = (s_circle *) circles->data;
-
         if (!my_strcmp(cur->id, id)) {
             sfCircleShape_destroy(cur->elem);
             break;
         }
-
         ite++;
         circles = circles->next;
     }
-
     linked_delete(&adata->lists->circles, ite);
 }
 

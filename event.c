@@ -7,11 +7,6 @@
 
 #include "include/main.h"
 
-void register_keypress(app_data *adata, int keycode)
-{
-    // ...
-}
-
 void register_keyrelease(app_data *adata, int keycode)
 {
     if (keycode == sfKeyEscape) sfRenderWindow_close(adata->win);
@@ -21,8 +16,10 @@ void register_leftclick_release(app_data *adata, sfVector2f mouse)
 {
     s_log *log = adata->config->log;
 
-    if (log->log_left_rel)
-        my_printf("(" YEL "EVENT" RESET ") " CYN "left mouse click" RESET " [ " BLU "%6f" RESET " / " BLU "%6f" RESET " ]\n", mouse.x, mouse.y);
+    if (log->log_left_rel) {
+        my_printf(get_msg(adata, "LOG_LEFTCLICK_R")->format, YEL, RESET,
+            CYN, RESET, BLU, mouse.x, RESET, BLU, mouse.y, RESET);
+    }
 
     click_objects(adata);
 }
@@ -30,7 +27,6 @@ void register_leftclick_release(app_data *adata, sfVector2f mouse)
 void register_event(app_data *adata, sfEvent event)
 {
     if (event.type == sfEvtClosed) sfRenderWindow_close(adata->win);
-    if (event.type == sfEvtKeyPressed) register_keypress(adata, event.key.code);
 
     if (event.type == sfEvtKeyReleased)
         register_keyrelease(adata, event.key.code);

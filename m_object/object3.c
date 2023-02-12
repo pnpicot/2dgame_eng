@@ -54,18 +54,17 @@ void update_object_rect(s_object *object, s_rect *rect, sfVector2f mouse)
     bounds.width += object->padding.x * 2;
     bounds.top -= object->padding.y;
     bounds.height += object->padding.y * 2;
-
     sfUint8 bg_hover = object->properties & obj_bg_hover;
     sfUint8 out_hover = object->properties & obj_out_hover;
-
     if (!bg_hover && !out_hover) return;
-
     if (sfFloatRect_contains(&bounds, mouse.x, mouse.y)) {
         if (bg_hover) sfRectangleShape_setFillColor(rect->elem, object->bg_on);
-        if (out_hover) sfRectangleShape_setOutlineColor(rect->elem, object->out_on);
+        if (out_hover)
+            sfRectangleShape_setOutlineColor(rect->elem, object->out_on);
     } else {
         if (bg_hover) sfRectangleShape_setFillColor(rect->elem, object->bg_off);
-        if (out_hover) sfRectangleShape_setOutlineColor(rect->elem, object->out_off);
+        if (out_hover)
+            sfRectangleShape_setOutlineColor(rect->elem, object->out_off);
     }
 }
 
@@ -76,20 +75,18 @@ void update_object_button(s_object *object, s_button *button, sfVector2f mouse)
     bounds.width += object->padding.x * 2;
     bounds.top -= object->padding.y;
     bounds.height += object->padding.y * 2;
-
     sfUint8 bg_hover = object->properties & obj_bg_hover;
     sfUint8 fg_hover = object->properties & obj_fg_hover;
     sfUint8 out_hover = object->properties & obj_out_hover;
-
     if (!bg_hover && !fg_hover && !out_hover) return;
-
+    sfRectangleShape *rect = button->rect->elem;
     if (sfFloatRect_contains(&bounds, mouse.x, mouse.y)) {
-        if (bg_hover) sfRectangleShape_setFillColor(button->rect->elem, object->bg_on);
+        if (bg_hover) sfRectangleShape_setFillColor(rect, object->bg_on);
         if (fg_hover) sfText_setColor(button->text->elem, object->fg_on);
-        if (out_hover) sfRectangleShape_setOutlineColor(button->rect->elem, object->out_on);
+        if (out_hover) sfRectangleShape_setOutlineColor(rect, object->out_on);
     } else {
-        if (bg_hover) sfRectangleShape_setFillColor(button->rect->elem, object->bg_off);
+        if (bg_hover) sfRectangleShape_setFillColor(rect, object->bg_off);
         if (fg_hover) sfText_setColor(button->text->elem, object->fg_off);
-        if (out_hover) sfRectangleShape_setOutlineColor(button->rect->elem, object->out_off);
+        if (out_hover) sfRectangleShape_setOutlineColor(rect, object->out_off);
     }
 }

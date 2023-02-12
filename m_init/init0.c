@@ -5,14 +5,7 @@
 ** Game_eng
 */
 
-#include "include/main.h"
-
-void init_clocks(s_clock *clocks)
-{
-    clocks->app_clock = sfClock_create();
-    clocks->render_clock = sfClock_create();
-    clocks->update_clock = sfClock_create();
-}
+#include "../include/main.h"
 
 void init_lists(s_list *lists)
 {

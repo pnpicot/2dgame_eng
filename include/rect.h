@@ -27,3 +27,4 @@ float get_rect_rot(app_data *adata, char *id);
 sfFloatRect get_rect_bounds(app_data *adata, char *id);
 sfVector2f get_rect_origin(app_data *adata, char *id);
 sfVector2f get_rect_scale(app_data *adata, char *id);
+void set_rect_active(app_data *adata, char *id, sfUint8 active);

@@ -38,6 +38,7 @@ void add_vertex(app_data *adata, char *id, int layer)
     new_vertex->rtex_id = NULL;
     new_vertex->layer = layer;
     new_vertex->type = TYPE_VERTEX;
+    new_vertex->active = 1;
 
     if (layer < adata->min_layer) adata->min_layer = layer;
     if (layer > adata->max_layer) adata->max_layer = layer;
@@ -48,28 +49,22 @@ void add_vertex(app_data *adata, char *id, int layer)
 void delete_vertex(app_data *adata, char *id)
 {
     s_vertex *vertex = get_vertex(adata, id);
-
     if (vertex == NULL) {
         char *format = get_msg(adata, "VERTEX_ERR_DEL_ID")->format;
         my_printf(format, "VERTEX_ARRAY", id);
         return;
     }
-
     linked_node *vertexes = adata->lists->vertexes;
     int ite = 0;
-
     while (vertexes != NULL && vertexes->data != NULL) {
         s_vertex *cur = (s_vertex *) vertexes->data;
-
         if (!my_strcmp(cur->id, id)) {
             sfVertexArray_destroy(cur->elem);
             break;
         }
-
         ite++;
         vertexes = vertexes->next;
     }
-
     linked_delete(&adata->lists->vertexes, ite);
 }
 

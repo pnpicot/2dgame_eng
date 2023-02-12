@@ -61,7 +61,8 @@ void translate_vertex(app_data *adata, char *id, int index, sfVector2f pos_ch)
 
     if (index < 0 || index >= count) {
         char *format = get_msg(adata, "VERTEX_ERR_SET_COUNT")->format;
-        my_printf(format, "vertex position (one, translate)", "VERTEX_ARRAY", index);
+        my_printf(format, "vertex position (one, translate)",
+            "VERTEX_ARRAY", index);
         return;
     }
 

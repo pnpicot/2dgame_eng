@@ -5,7 +5,7 @@
 ** Game_eng
 */
 
-#include "include/main.h"
+#include "../include/main.h"
 
 sfColor get_color(int r, int g, int b, int a)
 {
@@ -28,13 +28,18 @@ int circle_contains(sfVector2f pos, float radius, sfVector2f point)
 
 int rect_intersect_circle(sfVector2f pos, float radius, sfFloatRect rect)
 {
-    sfVector2f top_left = { rect.left, rect.top };
-    sfVector2f top_right = { rect.left + rect.width, rect.top };
-    sfVector2f bottom_left = { rect.left, rect.top + rect.height };
-    sfVector2f bottom_right = {  rect.left + rect.width, rect.top + rect.height };
+    sfVector2f tl = { rect.left, rect.top };
+    sfVector2f tr = { rect.left + rect.width, rect.top };
+    sfVector2f bl = { rect.left, rect.top + rect.height };
+    sfVector2f br = { rect.left + rect.width, rect.top + rect.height };
 
-    return (circle_contains(pos, radius, top_left)
-            || circle_contains(pos, radius, top_right)
-            || circle_contains(pos, radius, bottom_left)
-            || circle_contains(pos, radius, bottom_right));
+    return (circle_contains(pos, radius, tl)
+            || circle_contains(pos, radius, tr)
+            || circle_contains(pos, radius, bl)
+            || circle_contains(pos, radius, br));
+}
+
+int i_rand(int min, int max)
+{
+    return ((rand() % (max - min + 1)) + min);
 }

@@ -36,3 +36,29 @@ void update_translation(app_data *adata, s_transform *transform);
 void update_rotation(app_data *adata, s_transform *transform);
 void update_scaling(app_data *adata, s_transform *transform);
 void update_transforms(app_data *adata);
+void init_translate(s_transform *new_transform, s_trfarg arg, char *id);
+void init_rotate(s_transform *new_transform, s_trfarg arg, char *id);
+void init_scale(s_transform *new_transform, s_trfarg arg, char *id);
+void init_transform(s_transform *new_transform, s_trfarg arg, char *id);
+int transform_idcheck(app_data *adata, char *id);
+void c_rot_button_next(app_data *adata, s_transform *transform, \
+s_button *button);
+void c_rot_circle_next(app_data *adata, s_transform *transform, \
+s_circle *circle);
+void c_rot_rect_next(app_data *adata, s_transform *transform, \
+s_rect *rect);
+void c_rot_text_next(app_data *adata, s_transform *transform, s_text *text);
+void c_scl_button_next(app_data *adata, s_transform *transform, \
+s_button *button);
+void c_scl_circle_next(app_data *adata, s_transform *transform, \
+s_circle *circle);
+void c_scl_rect_next(app_data *adata, s_transform *transform, s_rect *rect);
+void c_scl_text_next(app_data *adata, s_transform *transform, s_text *text);
+void c_trsl_button_next(app_data *adata, s_transform *transform, \
+s_button *button);
+void c_trsl_circle_next(app_data *adata, s_transform *transform, \
+s_circle *circle);
+void c_trsl_rect_next(app_data *adata, s_transform *transform, s_rect *rect);
+void c_trsl_text_next(app_data *adata, s_transform *transform, s_text *text);
+void c_trsl_vertex_next(app_data *adata, s_transform *transform, \
+s_vertex *vertex, float speed);

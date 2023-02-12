@@ -27,3 +27,4 @@ float get_circle_rot(app_data *adata, char *id);
 sfFloatRect get_circle_bounds(app_data *adata, char *id);
 sfVector2f get_circle_origin(app_data *adata, char *id);
 sfVector2f get_circle_scale(app_data *adata, char *id);
+void set_circle_active(app_data *adata, char *id, sfUint8 active);

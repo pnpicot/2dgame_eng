@@ -7,27 +7,6 @@
 
 #include "../include/main.h"
 
-sfVertex *get_vertex_one(app_data *adata, char *id, int index)
-{
-    s_vertex *vertex = get_vertex(adata, id);
-
-    if (vertex == NULL) {
-        char *format = get_msg(adata, "VERTEX_ERR_GET_ID")->format;
-        my_printf(format, "vertex", "VERTEX_ARRAY");
-        return (NULL);
-    }
-
-    int count = get_vertex_size(adata, id);
-
-    if (index < 0 || index >= count) {
-        char *format = get_msg(adata, "VERTEX_ERR_GET_COUNT")->format;
-        my_printf(format, "vertex", "VERTEX_ARRAY", index);
-        return (NULL);
-    }
-
-    return (sfVertexArray_getVertex(vertex->elem, index));
-}
-
 void color_vertex(app_data *adata, char *id, int index, sfColor color)
 {
     s_vertex *vertex = get_vertex(adata, id);

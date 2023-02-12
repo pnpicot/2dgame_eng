@@ -43,7 +43,6 @@ void load_font(app_data *adata, char *filename, char *id)
     s_font *new_font = malloc(sizeof(s_font));
     new_font->font = sfFont_createFromFile(filename);
     new_font->id = id;
-
     linked_add(adata->lists->fonts, new_font);
 }
 

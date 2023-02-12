@@ -7,7 +7,8 @@
 
 #include "../include/main.h"
 
-void set_object_click(app_data *adata, char *id, void (*trigger)(app_data *adata))
+void set_object_click(app_data *adata, char *id, \
+void (*trigger)(app_data *adata))
 {
     s_object *object = get_object(adata, id);
 

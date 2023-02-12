@@ -31,7 +31,8 @@ void update_button(app_data *adata, s_button *button)
 
     sfFloatRect text_bounds = get_text_bounds(adata, button->text->id);
 
-    sfText_setOrigin(button->text->elem, (sfVector2f) { text_bounds.width / 2, text_bounds.height / 2 });
+    sfText_setOrigin(button->text->elem,
+        (sfVector2f) { text_bounds.width / 2, text_bounds.height / 2 });
     sfText_setRotation(button->text->elem, o_angle);
     sfText_setScale(button->text->elem, scale);
 

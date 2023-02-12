@@ -34,3 +34,4 @@ float get_button_rot(app_data *adata, char *id);
 sfFloatRect get_button_bounds(app_data *adata, char *id);
 sfVector2f get_button_origin(app_data *adata, char *id);
 sfVector2f get_button_scale(app_data *adata, char *id);
+void set_button_active(app_data *adata, char *id, sfUint8 active);

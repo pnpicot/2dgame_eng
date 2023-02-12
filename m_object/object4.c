@@ -7,7 +7,8 @@
 
 #include "../include/main.h"
 
-void click_object_button(app_data *adata, s_object *object, s_button *button, sfVector2f mouse)
+void click_object_button(app_data *adata, s_object *object, \
+s_button *button, sfVector2f mouse)
 {
     sfFloatRect bounds = sfRectangleShape_getGlobalBounds(button->rect->elem);
     bounds.left -= object->padding.x;
@@ -23,7 +24,8 @@ void click_object_button(app_data *adata, s_object *object, s_button *button, sf
         (*object->trigger)(adata);
 }
 
-void click_object_text(app_data *adata, s_object *object, s_text *text, sfVector2f mouse)
+void click_object_text(app_data *adata, s_object *object, \
+s_text *text, sfVector2f mouse)
 {
     sfFloatRect bounds = sfText_getGlobalBounds(text->elem);
     bounds.left -= object->padding.x;
@@ -39,7 +41,8 @@ void click_object_text(app_data *adata, s_object *object, s_text *text, sfVector
         (*object->trigger)(adata);
 }
 
-void click_object_rect(app_data *adata, s_object *object, s_rect *rect, sfVector2f mouse)
+void click_object_rect(app_data *adata, s_object *object, \
+s_rect *rect, sfVector2f mouse)
 {
     sfFloatRect bounds = sfRectangleShape_getGlobalBounds(rect->elem);
     bounds.left -= object->padding.x;
@@ -55,7 +58,8 @@ void click_object_rect(app_data *adata, s_object *object, s_rect *rect, sfVector
         (*object->trigger)(adata);
 }
 
-void click_object_circle(app_data *adata, s_object *object, s_circle *circle, sfVector2f mouse)
+void click_object_circle(app_data *adata, s_object *object, \
+s_circle *circle, sfVector2f mouse)
 {
     sfUint8 click = object->properties & obj_click;
 

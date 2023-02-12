@@ -88,30 +88,14 @@ float get_transform_rot(s_trfarg arg)
 
 void translate(app_data *adata, s_trfarg arg)
 {
-    char *id = str_add("@PV_TRF-", nbr_to_str(rand() % 150000));
+    char *id = str_add("@PV_TRF-", rand_id(16));
     s_transform *transform = get_transform(adata, id);
-
     if (transform != NULL) {
         char *format = get_msg(adata, "TRANSFORM_ERR_ADD_ID")->format;
         my_printf(format, id);
         return;
     }
-
     s_transform *new_transform = malloc(sizeof(s_transform));
-    new_transform->id = id;
-    new_transform->callback = arg.callback;
-    new_transform->dest = arg.dest;
-    new_transform->scale = (sfVector2f) { 0, 0 };
-    new_transform->ref = arg.ref;
-    new_transform->ref_type = arg.type;
-    new_transform->t_speed = arg.t_speed;
-    new_transform->s_speed = 0;
-    new_transform->r_speed = 0;
-    new_transform->angle = 0;
-    new_transform->trsl = 1;
-    new_transform->scl = 0;
-    new_transform->rot = 0;
-    new_transform->trf_type = TRF_TRANSLATE;
-
+    init_translate(new_transform, arg, id);
     linked_add(adata->lists->transforms, new_transform);
 }

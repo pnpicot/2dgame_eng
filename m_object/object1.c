@@ -39,15 +39,8 @@ void set_object_defaults(app_data *adata, s_object *object)
             s_text *text = (s_text *) object->ref;
             object->fg_off = sfText_getColor(text->elem);
             break;
-        case TYPE_BUTTON:
-            s_button *button = (s_button *) object->ref;
-            object->bg_off = sfRectangleShape_getFillColor(button->rect->elem);
-            object->fg_off = sfText_getColor(button->text->elem);
-            object->out_off = sfRectangleShape_getOutlineColor(button->rect->elem);
-            break;
         default:
-            char *format = get_msg(adata, "OBJECT_WARN_NO_SUPPORT")->format;
-            my_printf(format, object->id);
+            set_object_defn(adata, object);
             break;
     }
 }
@@ -55,13 +48,11 @@ void set_object_defaults(app_data *adata, s_object *object)
 void add_object(app_data *adata, char *id, void *ref, sfUint8 type)
 {
     s_object *object = get_object(adata, id);
-
     if (object != NULL) {
         char *format = get_msg(adata, "OBJECT_ERR_ADD_ID")->format;
         my_printf(format, "OBJECT", id);
         return;
     }
-
     s_object *new_object = malloc(sizeof(s_object));
     new_object->id = id;
     new_object->properties = 0;
@@ -72,7 +63,6 @@ void add_object(app_data *adata, char *id, void *ref, sfUint8 type)
     new_object->out_on = sfBlack;
     new_object->trigger = NULL;
     new_object->padding = (sfVector2f) { 0, 0 };
-
     set_object_defaults(adata, new_object);
     linked_add(adata->lists->objects, new_object);
 }
@@ -80,25 +70,19 @@ void add_object(app_data *adata, char *id, void *ref, sfUint8 type)
 void delete_object(app_data *adata, char *id)
 {
     s_object *object = get_object(adata, id);
-
     if (object == NULL) {
         char *format = get_msg(adata, "OBJECT_ERR_DEL_ID")->format;
         my_printf(format, "OBJECT", id);
         return;
     }
-
     linked_node *objects = adata->lists->objects;
     int ite = 0;
-
     while (objects != NULL && objects->data != NULL) {
         s_object *cur = (s_object *) objects->data;
-
         if (!my_strcmp(cur->id, id)) break;
-
         ite++;
         objects = objects->next;
     }
-
     linked_delete(&adata->lists->objects, ite);
 }
 

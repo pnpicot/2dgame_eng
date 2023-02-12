@@ -44,6 +44,7 @@ typedef struct {
     char *rtex_id;
     int layer;
     sfUint8 type;
+    sfUint8 active;
 } s_rect;
 
 typedef struct {
@@ -52,6 +53,7 @@ typedef struct {
     char *rtex_id;
     int layer;
     sfUint8 type;
+    sfUint8 active;
 } s_circle;
 
 typedef struct {
@@ -60,6 +62,7 @@ typedef struct {
     char *rtex_id;
     int layer;
     sfUint8 type;
+    sfUint8 active;
 } s_vertex;
 
 typedef struct {
@@ -68,6 +71,7 @@ typedef struct {
     char *rtex_id;
     int layer;
     sfUint8 type;
+    sfUint8 active;
 } s_text;
 
 typedef struct {

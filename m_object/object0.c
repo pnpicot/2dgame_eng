@@ -30,22 +30,20 @@ void update_object_circle(s_object *object, s_circle *circle, sfVector2f mouse)
 {
     sfUint8 bg_hover = object->properties & obj_bg_hover;
     sfUint8 out_hover = object->properties & obj_out_hover;
-
     if (!bg_hover && !out_hover) return;
-
     float radius = sfCircleShape_getRadius(circle->elem);
     sfVector2f pos = sfCircleShape_getPosition(circle->elem);
     sfVector2f origin = sfCircleShape_getOrigin(circle->elem);
-
     pos.x += radius - origin.x;
     pos.y += radius - origin.y;
-
     if (circle_contains(pos, radius + object->padding.x, mouse)) {
         if (bg_hover) sfCircleShape_setFillColor(circle->elem, object->bg_on);
-        if (out_hover) sfCircleShape_setOutlineColor(circle->elem, object->out_on);
+        if (out_hover)
+            sfCircleShape_setOutlineColor(circle->elem, object->out_on);
     } else {
         if (bg_hover) sfCircleShape_setFillColor(circle->elem, object->bg_off);
-        if (out_hover) sfCircleShape_setOutlineColor(circle->elem, object->out_off);
+        if (out_hover)
+            sfCircleShape_setOutlineColor(circle->elem, object->out_off);
     }
 }
 
@@ -75,8 +73,8 @@ void update_objects(app_data *adata)
 {
     linked_node *objects = adata->lists->objects;
     sfVector2i mouse_r = sfMouse_getPositionRenderWindow(adata->win);
-    sfVector2f mouse =  sfRenderWindow_mapPixelToCoords(adata->win,
-                        mouse_r, sfRenderWindow_getView(adata->win));
+    sfVector2f mouse = sfRenderWindow_mapPixelToCoords(adata->win,
+        mouse_r, sfRenderWindow_getView(adata->win));
 
     while (objects != NULL && objects->data != NULL) {
         s_object *cur = (s_object *) objects->data;
@@ -84,5 +82,22 @@ void update_objects(app_data *adata)
         update_s_object(cur, mouse);
 
         objects = objects->next;
+    }
+}
+
+void set_object_defn(app_data *adata, s_object *object)
+{
+    switch (object->type) {
+        case TYPE_BUTTON:
+            s_button *button = (s_button *) object->ref;
+            sfRectangleShape *rect = button->rect->elem;
+            object->bg_off = sfRectangleShape_getFillColor(rect);
+            object->fg_off = sfText_getColor(button->text->elem);
+            object->out_off = sfRectangleShape_getOutlineColor(rect);
+            break;
+        default:
+            char *format = get_msg(adata, "OBJECT_WARN_NO_SUPPORT")->format;
+            my_printf(format, object->id);
+            break;
     }
 }

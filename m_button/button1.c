@@ -25,19 +25,15 @@ s_button *get_button(app_data *adata, char *id)
 void add_button(app_data *adata, char *id, int layer)
 {
     s_button *button = get_button(adata, id);
-
     if (button != NULL) {
         char *format = get_msg(adata, "BUTTON_ERR_ADD_ID")->format;
         my_printf(format, "BUTTON", id);
         return;
     }
-
     char *rect_id = str_add("@PV_RCT-", id);
     char *text_id = str_add("@PV_TXT-", id);
-
     add_rect(adata, rect_id, layer);
     add_text(adata, text_id, layer);
-
     s_button *new_button = malloc(sizeof(s_button));
     new_button->id = id;
     new_button->rect = get_rect(adata, rect_id);
@@ -45,39 +41,31 @@ void add_button(app_data *adata, char *id, int layer)
     new_button->rtex_id = NULL;
     new_button->layer = layer;
     new_button->type = TYPE_BUTTON;
-
     if (layer < adata->min_layer) adata->min_layer = layer;
     if (layer > adata->max_layer) adata->max_layer = layer;
-
     linked_add(adata->lists->buttons, new_button);
 }
 
 void delete_button(app_data *adata, char *id)
 {
     s_button *button = get_button(adata, id);
-
     if (button == NULL) {
         char *format = get_msg(adata, "BUTTON_ERR_DEL_ID")->format;
         my_printf(format, "BUTTON", id);
         return;
     }
-
     linked_node *buttons = adata->lists->buttons;
     int ite = 0;
-
     while (buttons != NULL && buttons->data != NULL) {
         s_button *cur = (s_button *) buttons->data;
-
         if (!my_strcmp(cur->id, id)) {
             delete_rect(adata, cur->rect->id);
             delete_text(adata, cur->text->id);
             break;
         }
-
         ite++;
         buttons = buttons->next;
     }
-
     linked_delete(&adata->lists->buttons, ite);
 }
 

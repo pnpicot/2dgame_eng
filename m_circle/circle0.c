@@ -45,3 +45,16 @@ sfVector2f get_circle_scale(app_data *adata, char *id)
 
     return (sfCircleShape_getScale(circle->elem));
 }
+
+void set_circle_active(app_data *adata, char *id, sfUint8 active)
+{
+    s_circle *circle = get_circle(adata, id);
+
+    if (circle == NULL) {
+        char *format = get_msg(adata, "CIRCLE_ERR_SET_ID")->format;
+        my_printf(format, "active", "CIRCLE");
+        return;
+    }
+
+    circle->active = active;
+}

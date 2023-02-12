@@ -14,6 +14,9 @@ SRC	=	$(shell find m_rect -name '*.c')		\
 		$(shell find m_rtex -name '*.c')		\
 		$(shell find m_object -name '*.c')		\
 		$(shell find m_transform -name '*.c')	\
+		$(shell find m_init -name '*.c')		\
+		$(shell find m_render -name '*.c')		\
+		$(shell find m_utils -name '*.c')		\
 		$(wildcard *.c)
 
 OBJ	=	$(SRC:.c=.o)

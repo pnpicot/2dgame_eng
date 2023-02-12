@@ -22,27 +22,21 @@ sfVector2f get_rect_scale(app_data *adata, char *id)
 void delete_rect(app_data *adata, char *id)
 {
     s_rect *rect = get_rect(adata, id);
-
     if (rect == NULL) {
         my_printf(get_msg(adata, "RECT_ERR_DEL_ID")->format, "RECT", id);
         return;
     }
-
     linked_node *rects = adata->lists->rects;
     int ite = 0;
-
     while (rects != NULL && rects->data != NULL) {
         s_rect *cur = (s_rect *) rects->data;
-
         if (!my_strcmp(cur->id, id)) {
             sfRectangleShape_destroy(cur->elem);
             break;
         }
-
         ite++;
         rects = rects->next;
     }
-
     linked_delete(&adata->lists->rects, ite);
 }
 
@@ -65,4 +59,17 @@ void set_rect_target(app_data *adata, char *id, char *target_id)
     }
 
     rect->rtex_id = target_id;
+}
+
+void set_rect_active(app_data *adata, char *id, sfUint8 active)
+{
+    s_rect *rect = get_rect(adata, id);
+
+    if (rect == NULL) {
+        char *format = get_msg(adata, "RECT_ERR_SET_ID")->format;
+        my_printf(format, "active", "RECT");
+        return;
+    }
+
+    rect->active = active;
 }

@@ -25,28 +25,22 @@ s_rtex *get_rtex(app_data *adata, char *id)
 void delete_rtex(app_data *adata, char *id)
 {
     s_rtex *rtex = get_rtex(adata, id);
-
     if (rtex == NULL) {
         char *format = get_msg(adata, "RTEX_ERR_DEL_ID")->format;
         my_printf(format, "RENDER_TEXTURE", id);
         return;
     }
-
     linked_node *rtexs = adata->lists->rtexs;
     int ite = 0;
-
     while (rtexs != NULL && rtexs->data != NULL) {
         s_rtex *cur = (s_rtex *) rtexs->data;
-
         if (!my_strcmp(cur->id, id)) {
             sfRenderTexture_destroy(cur->tex);
             break;
         }
-
         ite++;
         rtexs = rtexs->next;
     }
-
     linked_delete(&adata->lists->rtexs, ite);
 }
 

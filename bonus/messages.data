@@ -81,3 +81,7 @@ FSHADER_ERR_SET_ID = Cannot change value of parameter "%s" for [%s] (unknown id)
 TRANSFORM_ERR_DEL_ID = Cannot cancel transformation with id "%s" (unknown id).
 TRANSFORM_ERR_ADD_ID = Cannot make transformation with id "%s" (id already exists).
 # >> TRANSFORMS >> END
+
+# >> LOGS >> BEGIN
+LOG_LEFTCLICK_R = (%sEVENT%s) %sleft mouse click%s [ %s%6f%s / %s%6f%s ]
+# >> LOGS >> END

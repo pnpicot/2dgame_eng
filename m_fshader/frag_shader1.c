@@ -25,28 +25,22 @@ s_fshader *get_fshader(app_data *adata, char *id)
 void delete_fshader(app_data *adata, char *id)
 {
     s_fshader *shader = get_fshader(adata, id);
-
     if (shader == NULL) {
         char *format = get_msg(adata, "FSHADER_ERR_DEL_ID")->format;
         my_printf(format, "FRAGMENTATION_SHADER", id);
         return;
     }
-
     linked_node *fshaders = adata->lists->fshaders;
     int ite = 0;
-
     while (fshaders != NULL && fshaders->data != NULL) {
         s_fshader *cur = (s_fshader *) fshaders->data;
-
         if (!my_strcmp(cur->id, id)) {
             sfShader_destroy(cur->shader);
             break;
         }
-
         ite++;
         fshaders = fshaders->next;
     }
-
     linked_delete(&adata->lists->fshaders, ite);
 }
 

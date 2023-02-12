@@ -38,6 +38,7 @@ void add_text(app_data *adata, char *id, int layer)
     new_text->rtex_id = NULL;
     new_text->layer = layer;
     new_text->type = TYPE_TEXT;
+    new_text->active = 1;
 
     if (layer < adata->min_layer) adata->min_layer = layer;
     if (layer > adata->max_layer) adata->max_layer = layer;
@@ -48,28 +49,22 @@ void add_text(app_data *adata, char *id, int layer)
 void delete_text(app_data *adata, char *id)
 {
     s_text *text = get_text(adata, id);
-
     if (text == NULL) {
         char *format = get_msg(adata, "TEXT_ERR_DEL_ID")->format;
         my_printf(format, "TEXT", id);
         return;
     }
-
     linked_node *texts = adata->lists->texts;
     int ite = 0;
-
     while (texts != NULL && texts->data != NULL) {
         s_text *cur = (s_text *) texts->data;
-
         if (!my_strcmp(cur->id, id)) {
             sfText_destroy(cur->elem);
             break;
         }
-
         ite++;
         texts = texts->next;
     }
-
     linked_delete(&adata->lists->texts, ite);
 }
 
