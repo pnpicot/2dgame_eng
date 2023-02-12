@@ -65,6 +65,25 @@ void rt_fn(app_data *adata, s_transform old)
     rotate(adata, trsa);
 }
 
+void rtf(app_data *adata, s_transform old)
+{
+    float sc = ((float) rand()) / RAND_MAX;
+    sc += 0.3f;
+
+    s_trfarg trsa;
+    trsa.dest = (sfVector2f) { rand() % 1920, rand() % 1080 };
+    trsa.angle = rand() % 360;
+    trsa.scale = (sfVector2f) { sc, sc };
+    trsa.callback = old.callback;
+    trsa.r_speed = 0;
+    trsa.s_speed = 0;
+    trsa.t_speed = 0;
+    trsa.type = old.ref_type;
+    trsa.ref = old.ref;
+
+    transform(adata, trsa, (rand() % 12) + 2);
+}
+
 void load_defaults(app_data *adata)
 {
     add_rtex(adata, "rtex_game", 1);
@@ -201,7 +220,7 @@ void load_defaults(app_data *adata)
     set_rect_origin(adata, "uv_rect", (sfVector2f) { 50, 50 });
 
     s_trfarg uvr;
-    uvr.callback = NULL;
+    uvr.callback = &rtf;
     uvr.angle = 90.0f;
     uvr.dest = (sfVector2f) { 1578, 781 };
     uvr.ref = get_rect(adata, "uv_rect");

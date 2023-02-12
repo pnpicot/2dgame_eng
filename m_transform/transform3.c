@@ -13,9 +13,9 @@ void c_rot_button(app_data *adata, s_transform *transform, s_button *button)
 
     float angle = sfRectangleShape_getRotation(button->rect->elem);
     float speed = transform->r_speed;
-
     float diff = transform->angle - angle;
-    diff = diff < 0 ? -1 * diff : diff;
+
+    if (diff < 0) diff *= -1;
 
     if (diff >= TRANSFORM_TOLERANCE + transform->r_speed) {
         speed = speed <= diff ? speed : speed - diff;
@@ -50,8 +50,9 @@ void c_rot_circle(app_data *adata, s_transform *transform, s_circle *circle)
 
     float angle = sfCircleShape_getRotation(circle->elem);
     float speed = transform->r_speed;
-
     float diff = transform->angle - angle;
+
+    if (diff < 0) diff *= -1;
 
     if (diff >= TRANSFORM_TOLERANCE + transform->r_speed) {
         speed = speed <= diff ? speed : speed - diff;
@@ -82,8 +83,9 @@ void c_rot_rect(app_data *adata, s_transform *transform, s_rect *rect)
 
     float angle = sfRectangleShape_getRotation(rect->elem);
     float speed = transform->r_speed;
-
     float diff = transform->angle - angle;
+
+    if (diff < 0) diff *= -1;
 
     if (diff >= TRANSFORM_TOLERANCE + transform->r_speed) {
         speed = speed <= diff ? speed : speed - diff;
@@ -114,8 +116,9 @@ void c_rot_text(app_data *adata, s_transform *transform, s_text *text)
 
     float angle = sfText_getRotation(text->elem);
     float speed = transform->r_speed;
-
     float diff = transform->angle - angle;
+
+    if (diff < 0) diff *= -1;
 
     if (diff >= TRANSFORM_TOLERANCE + transform->r_speed) {
         speed = speed <= diff ? speed : speed - diff;
