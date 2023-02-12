@@ -175,6 +175,10 @@ typedef struct s_transform_s {
     sfUint8 trf_type;
     sfVector2f dest;
     float speed;
+    float angle;
+    sfUint8 trsl;
+    sfUint8 rot;
+    sfUint8 scl;
     void (*callback)(app_data *adata, struct s_transform_s old);
 } s_transform;
 
@@ -183,6 +187,7 @@ typedef struct {
     sfUint8 type;
     sfVector2f dest;
     float speed;
+    float angle;
     void (*callback)(app_data *adata, struct s_transform_s old);
 } s_trfarg;
 

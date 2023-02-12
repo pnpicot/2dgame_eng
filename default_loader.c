@@ -91,7 +91,7 @@ void load_defaults(app_data *adata)
 
     add_button(adata, "btn", 5);
     set_button_target(adata, "btn", "rtex_over");
-    move_button(adata, "btn", (sfVector2f) { 789, 121 });
+    move_button(adata, "btn", (sfVector2f) { 1421, 692 });
     resize_button(adata, "btn", (sfVector2f) { 350, 60});
     edit_button(adata, "btn", "test button");
     set_button_font(adata, "btn", get_font(adata, "oxy"));
@@ -115,7 +115,6 @@ void load_defaults(app_data *adata)
 
     add_object(adata, "ov_circ_o", get_circle(adata, "ov_circ"), TYPE_CIRCLE);
     set_object_bg(adata, "ov_circ_o", get_color(120, 120, 255, 150));
-    resize_object(adata, "ov_circ_o", (sfVector2f) { 50, 50 });
 
     s_trfarg trsa;
     trsa.callback = &tr_fn;
@@ -123,6 +122,9 @@ void load_defaults(app_data *adata)
     trsa.ref = get_button(adata, "btn");
     trsa.type = TYPE_BUTTON;
     trsa.speed = 1.0f;
+    trsa.angle = 0;
 
     translate(adata, trsa);
+
+    set_button_origin(adata, "btn", (sfVector2f) { 175, 30 });
 }

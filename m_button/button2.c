@@ -22,15 +22,19 @@ void color_button_fg(app_data *adata, char *id, sfColor color)
 
 void update_button(app_data *adata, s_button *button)
 {
-    sfFloatRect text_bounds = get_text_bounds(adata, button->text->id);
     sfFloatRect rect_bounds = get_rect_bounds(adata, button->rect->id);
-    sfVector2f text_origin = get_text_origin(adata, button->text->id);
+    float o_angle = sfText_getRotation(button->text->elem);
+
+    sfText_setRotation(button->text->elem, 0);
+
+    sfFloatRect text_bounds = get_text_bounds(adata, button->text->id);
+
+    sfText_setOrigin(button->text->elem, (sfVector2f) { text_bounds.width / 2, text_bounds.height / 2 });
+    sfText_setRotation(button->text->elem, o_angle);
 
     sfVector2f new_text_pos;
-    new_text_pos.x = rect_bounds.left + (rect_bounds.width / 2) - (text_bounds.width / 2)
-                    + text_origin.x;
-    new_text_pos.y = rect_bounds.top + (rect_bounds.height / 2) - (text_bounds.height / 2)
-                    + text_origin.y;
+    new_text_pos.x = rect_bounds.left + (rect_bounds.width / 2);
+    new_text_pos.y = rect_bounds.top + (rect_bounds.height / 2);
 
     sfText_setPosition(button->text->elem, new_text_pos);
 }

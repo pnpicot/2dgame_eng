@@ -49,15 +49,6 @@ void set_button_origin(app_data *adata, char *id, sfVector2f origin)
     }
 
     sfRectangleShape_setOrigin(button->rect->elem, origin);
-
-    sfFloatRect text_bounds = get_text_bounds(adata, button->text->id);
-    sfFloatRect rect_bounds = get_rect_bounds(adata, button->rect->id);
-
-    sfVector2f text_origin;
-    text_origin.x = (origin.x / rect_bounds.width) * text_bounds.width;
-    text_origin.y = (origin.y / rect_bounds.height) * text_bounds.height;
-
-    sfText_setOrigin(button->text->elem, text_origin);
     update_button(adata, button);
 }
 
@@ -73,6 +64,7 @@ void rotate_button(app_data *adata, char *id, float angle)
 
     sfRectangleShape_setRotation(button->rect->elem, angle);
     sfText_setRotation(button->text->elem, angle);
+    update_button(adata, button);
 }
 
 void scale_button(app_data *adata, char *id, sfVector2f factor)

@@ -11,3 +11,4 @@
 
 void update_transforms(app_data *adata);
 void translate(app_data *adata, s_trfarg arg);
+void rotate(app_data *adata, s_trfarg arg);
