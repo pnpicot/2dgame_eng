@@ -26,6 +26,10 @@ void update_scaling(app_data *adata, s_transform *transform)
             s_text *text = (s_text *) transform->ref;
             c_scl_text(adata, transform, text);
             break;
+        case TYPE_SPRITE:
+            s_sprite *sprite = (s_sprite *) transform->ref;
+            c_scl_sprite(adata, transform, sprite);
+            break;
     }
 }
 

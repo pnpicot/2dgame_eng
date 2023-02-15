@@ -86,6 +86,10 @@ void update_translation(app_data *adata, s_transform *transform)
             s_text *text = (s_text *) transform->ref;
             c_trsl_text(adata, transform, text);
             break;
+        case TYPE_SPRITE:
+            s_sprite *sprite = (s_sprite *) transform->ref;
+            c_trsl_sprite(adata, transform, sprite);
+            break;
     }
     if (transform->ref_type == TYPE_VERTEX)
         c_trsl_vertex(adata, transform, (s_vertex *) transform->ref);
@@ -109,6 +113,10 @@ void update_rotation(app_data *adata, s_transform *transform)
         case TYPE_TEXT:
             s_text *text = (s_text *) transform->ref;
             c_rot_text(adata, transform, text);
+            break;
+        case TYPE_SPRITE:
+            s_sprite *sprite = (s_sprite *) transform->ref;
+            c_rot_sprite(adata, transform, sprite);
             break;
     }
 }

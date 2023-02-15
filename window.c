@@ -21,8 +21,6 @@ void window_loop(app_data *adata)
     float seconds = elapsed.microseconds / 1000000.0f;
 
     if (seconds >= config->app_rate) {
-        sfRenderWindow_clear(adata->win, sfBlack);
-
         update(adata);
         render(adata);
 
@@ -34,6 +32,7 @@ void window_loop(app_data *adata)
 void run_window(app_data *adata)
 {
     srand(time(NULL));
+    load_textures(adata);
     load_defaults(adata);
 
     while (sfRenderWindow_isOpen(adata->win)) {

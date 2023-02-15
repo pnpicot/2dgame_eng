@@ -94,5 +94,6 @@ void render_elements(app_data *adata, s_rtex *cur, int depth)
         render_circles(adata, i, depth);
         render_vertexes(adata, i, depth);
         render_texts(adata, i, depth);
+        render_sprites(adata, i, depth);
     }
 }

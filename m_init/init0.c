@@ -20,6 +20,8 @@ void init_lists(s_list *lists)
     lists->buttons = linked_new();
     lists->objects = linked_new();
     lists->transforms = linked_new();
+    lists->textures = linked_new();
+    lists->sprites = linked_new();
 }
 
 void init_appdata(app_data *adata)

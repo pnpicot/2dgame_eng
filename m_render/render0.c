@@ -31,6 +31,26 @@ void render_rtexs(app_data *adata, int depth)
     }
 }
 
+void render_sprites(app_data *adata, int layer, int depth)
+{
+    linked_node *sprites = adata->lists->sprites;
+    s_rtex *cur_rtex = get_rtex_d(adata, depth);
+
+    while (sprites != NULL && sprites->data != NULL) {
+        s_sprite *cur = (s_sprite *) sprites->data;
+
+        if (!cur->active || cur->layer != layer || cur->rtex_id == NULL
+            || cur_rtex == NULL || my_strcmp(cur_rtex->id, cur->rtex_id)) {
+            sprites = sprites->next;
+            continue;
+        }
+
+        sfRenderTexture_drawSprite(cur_rtex->tex, cur->elem, NULL);
+
+        sprites = sprites->next;
+    }
+}
+
 void display_rtexs(app_data *adata)
 {
     linked_node *rtexs = adata->lists->rtexs;
@@ -65,6 +85,7 @@ void render(app_data *adata)
     float seconds = elapsed.microseconds / 1000000.0f;
 
     if (seconds >= config->render_rate) {
+        sfRenderWindow_clear(adata->win, sfBlack);
         clear_rtexs(adata);
 
         for (int i = adata->min_rtex_depth; i <= adata->max_rtex_depth; i++) {

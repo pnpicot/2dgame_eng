@@ -95,5 +95,9 @@ void click_s_objects(app_data *adata, s_object *object, sfVector2f mouse)
             s_button *button = (s_button *) object->ref;
             click_object_button(adata, object, button, mouse);
             break;
+        case TYPE_SPRITE:
+            s_sprite *sprite = (s_sprite *) object->ref;
+            click_object_sprite(adata, object, sprite, mouse);
+            break;
     }
 }

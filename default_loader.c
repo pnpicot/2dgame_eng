@@ -26,10 +26,36 @@ void ex_callback(app_data *adata, s_transform old)
     transform(adata, arg, (rand() % 10) + 2);
 }
 
+// TODO: fix -360 angle bug
+
+void ex2_callback(app_data *adata, s_transform old)
+{
+    s_trfarg arg;
+
+    if (old.dest.x == adata->win_w - 64) {
+        arg.angle = 360;
+        arg.dest = (sfVector2f) { 128, 128 };
+        arg.scale = (sfVector2f) { 1.0, 1.0 };
+    } else {
+        arg.angle = 360;
+        arg.dest = (sfVector2f) { adata->win_w - 64, adata->win_h - 64 };
+        arg.scale = (sfVector2f) { 0.5, 0.5 };
+    }
+
+    arg.callback = old.callback;
+    arg.r_speed = 0;
+    arg.s_speed = 0;
+    arg.t_speed = 0;
+    arg.ref = old.ref;
+    arg.type = TYPE_SPRITE;
+
+    transform(adata, arg, 7.0f);
+}
+
 void load_defaults(app_data *adata)
 {
     add_rtex(adata, "main", 1);
-    for (int i = 0; i < 100; i++) {
+    /* for (int i = 0; i < 100; i++) {
         char *id = str_add("rect-", nbr_to_str(i));
         add_rect(adata, id, 1);
         resize_rect(adata, id, (sfVector2f) { 30, 30 });
@@ -47,5 +73,24 @@ void load_defaults(app_data *adata)
         arg.type = TYPE_RECT;
         arg.ref = get_rect(adata, id);
         transform(adata, arg, (rand() % 10) + 2);
-    }
+    } */
+
+    add_sprite(adata, "test", 1);
+    move_sprite(adata, "test", (sfVector2f) { 128, 128 });
+    set_sprite_target(adata, "test", "main");
+    set_sprite_origin(adata, "test", (sfVector2f) { 128, 128 });
+    set_sprite_texture(adata, "test", "default");
+
+    s_trfarg arg;
+    arg.angle = 360;
+    arg.dest = (sfVector2f) { adata->win_w - 64, adata->win_h - 64 };
+    arg.scale = (sfVector2f) { 0.5, 0.5 };
+    arg.callback = &ex2_callback;
+    arg.r_speed = 0;
+    arg.s_speed = 0;
+    arg.t_speed = 0;
+    arg.ref = get_sprite(adata, "test");
+    arg.type = TYPE_SPRITE;
+
+    transform(adata, arg, 7.0f);
 }

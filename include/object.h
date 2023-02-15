@@ -39,4 +39,6 @@ void click_object_rect(app_data *adata, s_object *object, \
 s_rect *rect, sfVector2f mouse);
 void click_object_circle(app_data *adata, s_object *object, \
 s_circle *circle, sfVector2f mouse);
+void click_object_sprite(app_data *adata, s_object *object, \
+s_sprite *sprite, sfVector2f mouse);
 void set_object_defn(app_data *adata, s_object *object);

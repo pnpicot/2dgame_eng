@@ -21,6 +21,7 @@
 #define TYPE_TEXT 3
 #define TYPE_VERTEX 4
 #define TYPE_BUTTON 5
+#define TYPE_SPRITE 6
 
 #define TRF_TRANSLATE 1
 #define TRF_ROTATE 2
@@ -73,6 +74,16 @@ typedef struct {
     sfUint8 type;
     sfUint8 active;
 } s_text;
+
+typedef struct {
+    sfSprite *elem;
+    char *id;
+    char *rtex_id;
+    int layer;
+    sfTexture *tex;
+    sfUint8 type;
+    sfUint8 active;
+} s_sprite;
 
 typedef struct {
     s_text *text;
@@ -132,6 +143,11 @@ typedef struct {
 } s_font;
 
 typedef struct {
+    sfTexture *tex;
+    char *id;
+} s_tex;
+
+typedef struct {
     linked_node *messages;
     linked_node *fonts;
     linked_node *fshaders;
@@ -141,8 +157,10 @@ typedef struct {
     linked_node *texts;
     linked_node *vertexes;
     linked_node *buttons;
+    linked_node *sprites;
     linked_node *objects;
     linked_node *transforms;
+    linked_node *textures;
 } s_list;
 
 typedef struct {
@@ -220,3 +238,5 @@ typedef struct {
 #include "button.h"
 #include "object.h"
 #include "transform.h"
+#include "texture.h"
+#include "sprite.h"

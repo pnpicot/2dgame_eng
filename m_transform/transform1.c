@@ -34,6 +34,9 @@ sfVector2f get_transform_pos(s_trfarg arg)
         case TYPE_RECT:
             s_rect *rect = (s_rect *) arg.ref;
             return (sfRectangleShape_getPosition(rect->elem));
+        case TYPE_SPRITE:
+            s_sprite *sprite = (s_sprite *) arg.ref;
+            return (sfSprite_getPosition(sprite->elem));
         case TYPE_TEXT:
             s_text *text = (s_text *) arg.ref;
             return (sfText_getPosition(text->elem));
@@ -61,6 +64,9 @@ sfVector2f get_transform_scl(s_trfarg arg)
         case TYPE_TEXT:
             s_text *text = (s_text *) arg.ref;
             return (sfText_getScale(text->elem));
+        case TYPE_SPRITE:
+            s_sprite *sprite = (s_sprite *) arg.ref;
+            return (sfSprite_getScale(sprite->elem));
     }
 
     return ((sfVector2f) { 1, 1 });
@@ -81,6 +87,9 @@ float get_transform_rot(s_trfarg arg)
         case TYPE_TEXT:
             s_text *text = (s_text *) arg.ref;
             return (sfText_getRotation(text->elem));
+        case TYPE_SPRITE:
+            s_sprite *sprite = (s_sprite *) arg.ref;
+            return (sfSprite_getRotation(sprite->elem));
     }
 
     return (0);

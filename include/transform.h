@@ -62,3 +62,11 @@ void c_trsl_rect_next(app_data *adata, s_transform *transform, s_rect *rect);
 void c_trsl_text_next(app_data *adata, s_transform *transform, s_text *text);
 void c_trsl_vertex_next(app_data *adata, s_transform *transform, \
 s_vertex *vertex, float speed);
+void c_rot_sprite_next(app_data *adata, s_transform *transform, \
+s_sprite *sprite);
+void c_rot_sprite(app_data *adata, s_transform *transform, s_sprite *sprite);
+void c_scl_sprite_next(app_data *adata, s_transform *transform, \
+s_sprite *sprite);
+void c_scl_sprite(app_data *adata, s_transform *transform, s_sprite *sprite);
+void c_trsl_sprite_next(app_data *adata, s_transform *transform, s_sprite *sprite);
+void c_trsl_sprite(app_data *adata, s_transform *transform, s_sprite *sprite);

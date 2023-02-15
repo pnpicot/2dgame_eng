@@ -23,6 +23,16 @@ TEXT_ERR_SET_TARGET = Cannot set property "%s" for [%s] (unknown id).
 TEXT_ERR_TARGET = Cannot set target with id "%s" for [%s] (unknown target id).
 # >> TEXTS >> END
 
+# >> SPRITES >> BEGIN
+SPRITE_ERR_ADD_ID = Cannot create [%s] with id "%s" (id already exists).
+SPRITE_ERR_DEL_ID = Cannot delete [%s] with id "%s (unknown id).
+SPRITE_ERR_SET_ID = Cannot set property "%s" for [%s] (unknown id).
+SPRITE_ERR_GET_ID = Cannot get property "%s" for [%s] (unknown id).
+SPRITE_ERR_SET_TARGET = Cannot set property "%s" for [%s] (unknown id).
+SPRITE_ERR_TARGET = Cannot set target with id "%s" for [%s] (unknown target id).
+SPRITE_ERR_TEX_ID = Cannot set sprite's texture with id "%s" (unknown texture id).
+# >> SPRITES >> END
+
 # >> BUTTONS >> BEGIN
 BUTTON_ERR_ADD_ID = Cannot create [%s] with id "%s" (id already exists).
 BUTTON_ERR_DEL_ID = Cannot delete [%s] with id "%s (unknown id).
@@ -85,3 +95,9 @@ TRANSFORM_ERR_ADD_ID = Cannot make transformation with id "%s" (id already exist
 # >> LOGS >> BEGIN
 LOG_LEFTCLICK_R = (%sEVENT%s) %sleft mouse click%s [ %s%6f%s / %s%6f%s ]
 # >> LOGS >> END
+
+# >> TEXTURES >> BEGIN
+TEXTURE_ERR_ADD_ID = Cannot create [%s] with id "%s" (id already exists).
+TEXTURE_ERR_DEL_ID = Cannot delete [%s] with id "%s" (unknown id).
+TEXTURE_ERR_LOAD_FILE = Cannot create [%s] with filename "%s" (no such file or directory).
+# >> TEXTURES >> END
